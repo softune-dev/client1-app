@@ -1,85 +1,96 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const TabLayout = () => (
-  <View className="flex-1">
-    <Tabs
-      screenOptions={{
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: "#003591",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-        headerRight: () => (
-          <View className="mr-4 rounded-full bg-white/10 p-2">
-            <MaterialCommunityIcons
-              name="bell-outline"
-              size={22}
-              color="#fff"
-            />
-          </View>
-        ),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Dashboard",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
-              size={size}
-              color={color}
-            />
+const TabLayout = () => {
+  const insets = useSafeAreaInsets();
+  return (
+    <View className="flex-1">
+      <Tabs
+        screenOptions={{
+          header: ({ options }) => (
+            <View className="bg-primary justify-between px-4"
+              style={{
+                height: 130 + insets.top,
+                paddingTop: 25 + insets.top
+              }}
+            >
+              <View className="flex-row justify-between items-center">
+                <View>
+                  <Text className="text-white text-3xl font-bold">
+                    {options.title ?? 'My App'}
+                  </Text>
+                  <Text className="text-white">Manager: <Text className="font-semibold uppercase">Messi</Text></Text>
+                </View>
+
+                <View>
+                  <Ionicons name="notifications-outline" size={26} color="white" />
+                </View>
+              </View>
+            </View>
           ),
+          tabBarStyle: {
+            height: 80 + insets.bottom,
+            paddingTop: 10,
+          },
+          tabBarLabelStyle: {
+            fontSize: 14,
+          },
         }}
-      />
-      <Tabs.Screen
-        name="deliveries"
-        options={{
-          title: "Deliveries",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="truck-delivery"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="retailers"
-        options={{
-          title: "Retailers",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="storefront-outline"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="more"
-        options={{
-          title: "More",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-    </Tabs>
-  </View>
-);
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Dashboard",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="view-dashboard"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="loadTruck"
+          options={{
+            title: "Load Truck",
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome5 name="truck-loading" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="delivery"
+          options={{
+            title: "Delivery",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="truck-delivery"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="more"
+          options={{
+            title: "More",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="more"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+      </Tabs>
+    </View>
+  )
+}
 
 export default TabLayout;

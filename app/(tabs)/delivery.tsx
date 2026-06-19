@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const deliveries = () => {
+const delivery = () => {
   return (
     <View>
-      <Text>deliveries</Text>
+      <Text>delivery</Text>
     </View>
   )
 }
 
-export default deliveries
+export default delivery
