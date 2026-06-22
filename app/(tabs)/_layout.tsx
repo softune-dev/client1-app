@@ -22,7 +22,7 @@ const TabLayout = () => {
                   <Text className="text-white text-3xl font-bold">
                     {options.title ?? 'My App'}
                   </Text>
-                  <Text className="text-white">Manager: <Text className="font-semibold uppercase">Messi</Text></Text>
+                  <Text className="text-white">Manager: <Text className="font-semibold uppercase">Neymar</Text></Text>
                 </View>
 
                 <View>

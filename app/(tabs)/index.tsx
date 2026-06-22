@@ -1,5 +1,5 @@
-import ActionButton from "@/components/common/ActionButton";
-import Chip from "@/components/common/Chip";
+import ActionButton from "@/components/dashboard/ActionButton";
+import Chip from "@/components/dashboard/Chip";
 import "@/global.css";
 import {
   AntDesign,
@@ -10,13 +10,14 @@ import {
 import { Image, Text, View } from "react-native";
 import truck from "../../assets/images/truck.webp";
 import Container from "@/components/common/Container";
+import SectionContainer from "@/components/common/SectionContainer";
 
 export default function Dashboard() {
   return (
     <Container>
       <View className="gap-3">
         {/* truck info */}
-        <View className="bg-white rounded-2xl p-4 shadow-md flex-row justify-between">
+        <SectionContainer className="flex-row justify-between">
           <View className="flex-row gap-2">
             <Image className="w-18 h-16" source={truck} />
             <View className="justify-between">
@@ -41,10 +42,10 @@ export default function Dashboard() {
               <Text className="font-bold">N/A</Text>
             </View>
           </View>
-        </View>
+        </SectionContainer>
 
         {/* Loaded inventory */}
-        <View className=" bg-white rounded-2xl p-4 shadow-sm">
+        <SectionContainer className=" bg-white rounded-2xl p-4 shadow-sm">
           <View className="flex-row justify-between">
             <Text className="font-extrabold text-xl">Loaded Inventory</Text>
 
@@ -82,10 +83,10 @@ export default function Dashboard() {
               textClass="text-purple-700"
             />
           </View>
-        </View>
+        </SectionContainer>
 
         {/* Remaining inventory */}
-        <View className=" bg-white rounded-2xl p-4 shadow-sm">
+        <SectionContainer className=" bg-white rounded-2xl p-4 shadow-sm">
           <View className="flex-row justify-between">
             <Text className="font-extrabold text-xl">
               Remaining Inventory
@@ -125,7 +126,7 @@ export default function Dashboard() {
               textClass="text-purple-700"
             />
           </View>
-        </View>
+        </SectionContainer>
 
         {/* pages buttons */}
         <View className="gap-2 px-1">
@@ -165,7 +166,7 @@ export default function Dashboard() {
         </View>
 
         {/* Today's Summary */}
-        <View className="bg-white rounded-2xl p-4 shadow-sm">
+        <SectionContainer className="bg-white rounded-2xl p-4 shadow-sm">
           <Text className="text-xl font-extrabold">
             Today&apos;s Summary
           </Text>
@@ -205,10 +206,10 @@ export default function Dashboard() {
               </View>
             </View>
           </View>
-        </View>
+        </SectionContainer>
 
         {/* Recent Deleveries */}
-        <View className="bg-white rounded-2xl pt-4 shadow mb-12">
+        <SectionContainer className="bg-white rounded-2xl pt-4 shadow mb-12">
           <View className="flex-row justify-between items-center border-b border-gray-200 pb-2 px-4">
             <Text className="text-xl font-extrabold">
               Recent Deliveries
@@ -269,7 +270,7 @@ export default function Dashboard() {
               </View>
             ))}
           </View>
-        </View>
+        </SectionContainer>
       </View>
     </Container>
   );
