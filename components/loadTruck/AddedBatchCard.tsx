@@ -30,7 +30,7 @@ export default function AddedBatchCard({
         <Pressable
           onPress={() => onDelete(item.id)}
         >
-          <MaterialIcons name="highlight-remove" size={24} color="red" />
+          <MaterialIcons name="highlight-remove" size={20} color="red" className='bg-red-50 rounded-full p-1' />
         </Pressable>
       </View>
     </View>

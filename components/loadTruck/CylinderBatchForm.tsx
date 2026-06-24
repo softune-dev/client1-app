@@ -83,7 +83,7 @@ const CylinderBatchForm = ({
 
   return (
     <SectionContainer>
-      <SectionHeader title="Add Cylinder Batch" />
+      <SectionHeader title="Add Cylinder Batch" className='mb-2' />
 
       <View className='gap-4'>
         <View className='flex-row gap-4 items-center'>

@@ -7,7 +7,7 @@ import SectionHeader from '../common/SectionHeader'
 const AddedBatch = ({ addedItems, handleDelete }: { addedItems: AddedItem[], handleDelete: (id: string) => void }) => {
   return (
     <SectionContainer>
-      <SectionHeader title="Selected Batches" />
+      <SectionHeader title="Selected Batches" className='mb-2' />
       {addedItems.length === 0 ? (
         <Text className="text-gray-500 text-center py-4 font-medium">
           No batch selected
