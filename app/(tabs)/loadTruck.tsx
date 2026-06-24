@@ -8,112 +8,115 @@ import { AddedItem } from '@/types/laodTruck'
 import { useState } from 'react'
 
 const products: Product[] = [
+  // Bashundhara
   {
     id: 1,
     supplier: 'Bashundhara',
     type: 'Package',
     size: '12kg',
-    availableCylinder: 40
+    availableCylinder: 40,
   },
   {
     id: 2,
     supplier: 'Bashundhara',
-    type: 'Empty Cylinder',
+    type: 'Refill',
     size: '12kg',
-    availableCylinder: 50
+    availableCylinder: 55,
   },
   {
     id: 3,
     supplier: 'Bashundhara',
     type: 'Empty Cylinder',
     size: '12kg',
-    availableCylinder: 15
+    availableCylinder: 25,
   },
   {
     id: 4,
     supplier: 'Bashundhara',
     type: 'Package',
     size: '35kg',
-    availableCylinder: 80
+    availableCylinder: 30,
   },
   {
     id: 5,
     supplier: 'Bashundhara',
     type: 'Empty Cylinder',
     size: '35kg',
-    availableCylinder: 60
+    availableCylinder: 15,
   },
 
+  // Total
   {
     id: 6,
     supplier: 'Total',
     type: 'Package',
     size: '12kg',
-    availableCylinder: 10
+    availableCylinder: 35,
   },
   {
     id: 7,
     supplier: 'Total',
-    type: 'Package',
+    type: 'Refill',
     size: '15kg',
-    availableCylinder: 55
+    availableCylinder: 45,
   },
   {
     id: 8,
     supplier: 'Total',
     type: 'Empty Cylinder',
     size: '15kg',
-    availableCylinder: 10
+    availableCylinder: 20,
   },
   {
     id: 9,
     supplier: 'Total',
     type: 'Package',
     size: '22kg',
-    availableCylinder: 40
+    availableCylinder: 28,
   },
   {
     id: 10,
     supplier: 'Total',
-    type: 'Package',
+    type: 'Empty Cylinder',
     size: '22kg',
-    availableCylinder: 35
+    availableCylinder: 18,
   },
 
+  // Fresh
   {
     id: 11,
     supplier: 'Fresh',
     type: 'Package',
     size: '12kg',
-    availableCylinder: 70
+    availableCylinder: 50,
   },
   {
     id: 12,
     supplier: 'Fresh',
-    type: 'Empty Cylinder',
+    type: 'Refill',
     size: '12kg',
-    availableCylinder: 65
+    availableCylinder: 60,
   },
   {
     id: 13,
     supplier: 'Fresh',
     type: 'Empty Cylinder',
     size: '12kg',
-    availableCylinder: 20
+    availableCylinder: 22,
   },
   {
     id: 14,
     supplier: 'Fresh',
     type: 'Package',
     size: '35kg',
-    availableCylinder: 90
+    availableCylinder: 40,
   },
   {
     id: 15,
     supplier: 'Fresh',
-    type: 'Package',
+    type: 'Empty Cylinder',
     size: '35kg',
-    availableCylinder: 55
+    availableCylinder: 16,
   },
 ];
 
