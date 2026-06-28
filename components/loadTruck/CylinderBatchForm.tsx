@@ -10,14 +10,16 @@ import SectionHeader from '../common/SectionHeader';
 const CylinderBatchForm = ({
   products,
   onAddBatch,
+  availableSpace
 }: {
   products: Product[]
   onAddBatch: (item: AddedItem) => void
+  availableSpace: number
 }) => {
   const [supplier, setSupplier] = useState<string | null>(null)
   const [type, setType] = useState<string | null>(null)
   const [size, setSize] = useState<string | null>(null)
-  const [quantity, setQuantity] = useState<number>(0)
+  const [quantity, setQuantity] = useState("");
 
   const suppliers = [
     ...new Set(products.map((p) => p.supplier)),
@@ -78,7 +80,7 @@ const CylinderBatchForm = ({
     setSupplier(null)
     setType(null)
     setSize(null)
-    setQuantity(0)
+    setQuantity("")
   }
 
   return (
@@ -144,11 +146,27 @@ const CylinderBatchForm = ({
             </Text>
             <View className='h-14 flex-row items-center justify-between rounded-xl border px-4 border-gray-300'>
               <TextInput
-                className='w-full'
-                placeholder='0'
+                className="w-full"
+                placeholder="0"
                 keyboardType="numeric"
-                value={String(quantity)}
-                onChangeText={(text) => setQuantity(Number(text) || 0)}
+                value={quantity}
+                onChangeText={(text) => {
+                  // Allow clearing the input
+                  if (text === "") {
+                    setQuantity("");
+                    return;
+                  }
+
+                  const value = Number(text);
+
+                  // Ignore invalid input
+                  if (isNaN(value)) return;
+
+                  // Only allow values up to availableCylinder
+                  if (value <= availableSpace) {
+                    setQuantity(text);
+                  }
+                }}
               />
             </View>
           </View>

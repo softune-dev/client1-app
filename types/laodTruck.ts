@@ -1,3 +1,13 @@
+import { Driver, Truck } from "./common"
+
+export type VehicleCardProps = {
+  trucks: Truck[]
+  drivers: Driver[]
+  vehicle: Truck | null
+  setVehicle: (vehicle: Truck | null) => void
+  availableSpace: number
+}
+
 export interface AddedItem {
   id: string
   supplier: string
@@ -7,12 +17,7 @@ export interface AddedItem {
 }
 
 export type AddedBatchCardProps = {
-  item: {
-    id: string
-    supplier: string
-    type: string
-    size: string
-    quantity: number
-  }
+  item: AddedItem
   onDelete: (id: string) => void
 }
+

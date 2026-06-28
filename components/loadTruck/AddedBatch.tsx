@@ -10,7 +10,7 @@ const AddedBatch = ({ addedItems, handleDelete }: { addedItems: AddedItem[], han
       <SectionHeader title="Selected Batches" className='mb-2' />
       {addedItems.length === 0 ? (
         <Text className="text-gray-500 text-center py-4 font-medium">
-          No batch selected
+          No batch added to this truck.
         </Text>
       ) : (
         addedItems.map((item) => (

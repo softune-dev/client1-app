@@ -1,3 +1,4 @@
+import { DropdownProps } from '@/types/common'
 import { MaterialIcons } from '@expo/vector-icons'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import {
@@ -8,22 +9,6 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native'
-
-type DropdownProps<T> = {
-  label?: string
-  items: T[]
-
-  selectedId: string | null
-  onSelect: (id: string) => void
-
-  getLabel: (item: T) => string
-  getKey: (item: T) => string
-
-  placeholder?: string
-  loading?: boolean
-  disabled?: boolean
-  emptyMessage?: string
-}
 
 export default function Dropdown<T>({
   label,
