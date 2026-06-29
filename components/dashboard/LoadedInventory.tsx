@@ -1,19 +1,16 @@
 import { View, Text, FlatList } from 'react-native'
 import React from 'react'
-import SectionContainer from '../common/SectionContainer'
-import { Product } from '@/types/common'
+import { Inventory } from '@/types/common'
 
-
-
-const LoadedInventory = ({products}: {products: Product[]}) => {
+const LoadedInventory = ({inventory}: {inventory: Inventory[]}) => {
 
   // Package products
-  const packageProducts = products.filter(
+  const packageProducts = inventory.filter(
     item => item.type === 'Package'
   )
 
   // Empty Cylinder products
-  const emptyCylinderProducts = products.filter(
+  const emptyCylinderProducts = inventory.filter(
     item => item.type === 'Empty Cylinder'
   )
 

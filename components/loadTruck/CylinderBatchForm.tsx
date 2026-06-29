@@ -4,15 +4,15 @@ import Dropdown from '../common/Dropdown'
 import { Entypo } from '@expo/vector-icons'
 import SectionContainer from '../common/SectionContainer';
 import { AddedItem } from '@/types/laodTruck';
-import { Product } from '@/types/common';
+import { Inventory } from '@/types/common';
 import SectionHeader from '../common/SectionHeader';
 
 const CylinderBatchForm = ({
-  products,
+  inventory,
   onAddBatch,
   availableSpace
 }: {
-  products: Product[]
+  inventory: Inventory[]
   onAddBatch: (item: AddedItem) => void
   availableSpace: number
 }) => {
@@ -22,7 +22,7 @@ const CylinderBatchForm = ({
   const [quantity, setQuantity] = useState("");
 
   const suppliers = [
-    ...new Set(products.map((p) => p.supplier)),
+    ...new Set(inventory.map((p) => p.supplier)),
   ].map((supplier) => ({
     id: supplier,
     name: supplier,
@@ -31,7 +31,7 @@ const CylinderBatchForm = ({
   const types = supplier
     ? [
       ...new Set(
-        products
+        inventory
           .filter(
             (p) => p.supplier === supplier
           )
@@ -47,7 +47,7 @@ const CylinderBatchForm = ({
     supplier && type
       ? [
         ...new Set(
-          products
+          inventory
             .filter(
               (p) =>
                 p.supplier === supplier &&
@@ -188,8 +188,7 @@ const CylinderBatchForm = ({
           </Pressable>
         </View>
       </View>
-
-
+      
     </SectionContainer>
   )
 }

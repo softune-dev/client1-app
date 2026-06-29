@@ -29,12 +29,12 @@ export default function AddedItemsList({ items, onRemoveItem }: AddedItemsListPr
               {item.company} • {item.size}
             </Text>
             <Text className="text-gray-500 text-xs mt-0.5 font-medium">
-              Type: {item.type} • {item.quantity} Cylinders @ {item.rate} TK
+              Type: {item.type} • {item.quantity} Cylinders @ {item.rate} BDT
             </Text>
           </View>
           <View className="flex-row items-center gap-3">
             <Text className="font-bold text-foreground text-base">
-              {(item.quantity * item.rate).toLocaleString()} TK
+              {(item.quantity * item.rate).toLocaleString()} BDT
             </Text>
             <Pressable
               onPress={() => onRemoveItem(item.id)}

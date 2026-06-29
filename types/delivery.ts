@@ -1,10 +1,14 @@
+import { Inventory } from "./common"
+
 export interface Retailer {
-  id: number
+  id: string
   name: string
-  phone: string
   shop: string
+  due: number
+  phone: string
   area: string
   address: string
+  status: string
 }
 
 export interface DeliveryItem {
@@ -14,4 +18,9 @@ export interface DeliveryItem {
   size: string
   quantity: number
   rate: number
-}
+}
+
+export type DeliveryItemFormProps = {
+  loadedInventory: Inventory[]
+  onAddItem: (item: Omit<DeliveryItem, 'id'>) => void
+}

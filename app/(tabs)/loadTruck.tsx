@@ -3,7 +3,7 @@ import AddedBatch from '@/components/loadTruck/AddedBatch'
 import ConfirmButton from '@/components/loadTruck/ConfirmButton'
 import CylinderBatchForm from '@/components/loadTruck/CylinderBatchForm'
 import VehicleCard from '@/components/loadTruck/VehicleCard'
-import { Driver, Product, Truck } from '@/types/common'
+import { Driver, Inventory, Truck } from '@/types/common'
 import { AddedItem } from '@/types/laodTruck'
 import { useState } from 'react'
 
@@ -19,7 +19,7 @@ const drivers: Driver[] = [
   { id: "3", name: 'Kylian Mbappé', phone: '1234567890', license: '1234567890', nid: '1234567890', presentAddress: '123 Main St', permanentAddress: '123 Main St', status: 'active' },
 ]
 
-const products: Product[] = [
+const inventory: Inventory[] = [
   // Bashundhara
   {
     id: "1",
@@ -132,7 +132,7 @@ const products: Product[] = [
   },
 ];
 
-const loadTruck = () => {
+const LoadTruck = () => {
   const [selectedTruck, setSelectedTruck] = useState<Truck | null>(null);
   const [addedItems, setAddedItems] = useState<AddedItem[]>([])
 
@@ -166,7 +166,7 @@ const loadTruck = () => {
 
       <CylinderBatchForm
         key={selectedTruck?.id ?? "no-truck"}
-        products={products}
+        inventory={inventory}
         onAddBatch={handleAddBatch}
         availableSpace={availableSpace}
       />
@@ -181,4 +181,4 @@ const loadTruck = () => {
   )
 }
 
-export default loadTruck
+export default LoadTruck

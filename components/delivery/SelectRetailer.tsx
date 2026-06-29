@@ -8,22 +8,11 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 
 type SelectRetailerProps = {
   retailers: Retailer[]
-  selectedRetailer?: Retailer | null
-  onSelectRetailer?: (retailer: Retailer) => void
+  selectedRetailer: Retailer | null
+  onSelectRetailer: (retailer: Retailer) => void
 }
 
-const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRetailer }: SelectRetailerProps) => {
-  const [localSelected, setLocalSelected] = useState<Retailer | null>(
-    retailers && retailers.length > 0 ? retailers[0] : null
-  )
-  const selectedRetailer = propSelected !== undefined ? propSelected : localSelected
-  const setSelectedRetailer = (retailer: Retailer) => {
-    if (onSelectRetailer) {
-      onSelectRetailer(retailer)
-    } else {
-      setLocalSelected(retailer)
-    }
-  }
+const SelectRetailer = ({ retailers, selectedRetailer, onSelectRetailer }: SelectRetailerProps) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -49,16 +38,16 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
       {selectedRetailer ? (
         <View className="flex-row items-center">
           {/* Store Icon */}
-          <View className="bg-primary/10 p-2 rounded-xl items-center justify-center mr-2">
-            <MaterialCommunityIcons name="storefront-outline" size={24} className="text-primary" />
+          <View className="bg-primary/10 p-2.5 rounded-xl items-center justify-center mr-3">
+            <MaterialCommunityIcons name="storefront-outline" size={24} color="#1D4ED8" />
           </View>
 
           {/* Retailer Details */}
           <View className="flex-1">
-            <Text className="font-semibold text-xl text-foreground leading-snug">
+            <Text className="font-semibold text-lg text-foreground leading-snug">
               {selectedRetailer.shop}
             </Text>
-            <Text className="text-gray-500 text-sm mt-0.5 font-medium">
+            <Text className="text-gray-500 text-xs mt-0.5 font-medium">
               {selectedRetailer.address}
             </Text>
           </View>
@@ -76,7 +65,7 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
           onPress={() => setModalVisible(true)}
           className="border border-dashed border-gray-300 rounded-2xl p-6 items-center justify-center bg-gray-50"
         >
-          <MaterialCommunityIcons name="storefront-outline" size={32} className="text-gray-400 mb-2" />
+          <MaterialCommunityIcons name="storefront-outline" size={32} color="#9ca3af" style={{ marginBottom: 8 }} />
           <Text className="text-gray-500 font-medium text-base">Tap to select a retailer</Text>
         </Pressable>
       )}
@@ -92,18 +81,18 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
       >
         {/* Search Input */}
         <View className="flex-row items-center bg-gray-100 rounded-xl px-3 py-2.5 mb-4 border border-gray-200">
-          <MaterialIcons name="search" size={22} className="text-gray-400 mr-2" />
+          <MaterialIcons name="search" size={22} color="#9ca3af" style={{ marginRight: 8 }} />
           <TextInput
             placeholder="Search by shop or area..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            className="flex-1 text-base text-foreground h-6 p-0"
+            className="flex-1 text-base text-foreground"
             placeholderTextColor="#9ca3af"
             clearButtonMode="while-editing"
           />
           {searchQuery !== '' && (
             <Pressable onPress={() => setSearchQuery('')}>
-              <MaterialIcons name="cancel" size={20} className="text-gray-400" />
+              <MaterialIcons name="cancel" size={20} color="#9ca3af" />
             </Pressable>
           )}
         </View>
@@ -117,7 +106,7 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
             return (
               <Pressable
                 onPress={() => {
-                  setSelectedRetailer(item)
+                  onSelectRetailer(item)
                   setModalVisible(false)
                   setSearchQuery('')
                 }}
@@ -130,7 +119,7 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
                   <MaterialCommunityIcons
                     name="storefront-outline"
                     size={20}
-                    className={isSelected ? 'text-primary' : 'text-gray-500'}
+                    color={isSelected ? '#1D4ED8' : '#6b7280'}
                   />
                 </View>
 
@@ -146,9 +135,9 @@ const SelectRetailer = ({ retailers, selectedRetailer: propSelected, onSelectRet
 
                 {/* Right Selection Indicator */}
                 {isSelected ? (
-                  <MaterialIcons name="check-circle" size={22} className="text-primary" />
+                  <MaterialIcons name="check-circle" size={22} color="#1D4ED8" />
                 ) : (
-                  <MaterialIcons name="radio-button-off" size={22} className="text-gray-300" />
+                  <MaterialIcons name="radio-button-off" size={22} color="#d1d5db" />
                 )}
               </Pressable>
             )

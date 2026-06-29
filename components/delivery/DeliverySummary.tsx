@@ -1,84 +1,116 @@
-import React from 'react'
-import { View, Text, Pressable } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import React, { useEffect } from 'react'
+import { View, Text, TextInput } from 'react-native'
 
 type DeliverySummaryProps = {
-  totalCylinders: number
   totalAmount: number
-  paymentMode: string
-  onTogglePaymentMode: () => void
-  onConfirm: () => void
+  discount: string
+  setDiscount: (discount: string) => void
+  received: string
+  setReceived: (received: string) => void
 }
 
 export default function DeliverySummary({
-  totalCylinders,
   totalAmount,
-  paymentMode,
-  onTogglePaymentMode,
-  onConfirm,
+  discount,
+  setDiscount,
+  received,
+  setReceived,
 }: DeliverySummaryProps) {
+  const discountVal = Number(discount) || 0
+  const receivedVal = Number(received) || 0
+  const payable = Math.max(0, totalAmount - discountVal)
+  const due = Math.max(0, payable - receivedVal)
+
+  // Reset inputs when totalAmount changes
+  useEffect(() => {
+    setDiscount('')
+    setReceived('')
+  }, [totalAmount, setDiscount, setReceived])
+
   return (
-    <View className="mt-2">
-      {/* Blue Summary Card */}
-      <View className="bg-primary rounded-3xl p-5 mb-5 shadow-lg">
-        {/* Upper Row */}
-        <View className="flex-row justify-between items-center">
-          <View>
-            <Text className="text-white/70 text-xs font-semibold uppercase tracking-wider">
-              Total Items
-            </Text>
-            <Text className="text-white text-2xl font-bold mt-1">
-              {totalCylinders} Cylinders
-            </Text>
-          </View>
-          <View className="items-end">
-            <Text className="text-white/70 text-xs font-semibold uppercase tracking-wider">
-              Payment Mode
-            </Text>
-            <Pressable
-              onPress={onTogglePaymentMode}
-              className="flex-row items-center gap-1.5 mt-1 bg-white/10 px-3 py-1 rounded-full active:bg-white/20"
-            >
-              <Text className="text-white text-lg font-bold">
-                {paymentMode}
-              </Text>
-              <MaterialIcons name="swap-horiz" size={16} color="white" />
-            </Pressable>
-          </View>
-        </View>
-
-        {/* Divider Line */}
-        <View className="h-[1px] bg-white/20 my-4" />
-
-        {/* Lower Row */}
-        <View className="flex-row justify-between items-end">
-          <Text className="text-white text-2xl font-bold mb-1">
-            Total Amount
-          </Text>
-          <View className="items-end">
-            <Text className="text-white/70 text-xs font-semibold uppercase tracking-wider">
-              Payable BDT
-            </Text>
-            <Text className="text-white text-3xl font-extrabold mt-1">
-              {totalAmount.toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </Text>
-          </View>
-        </View>
+    <View>
+      {/* Total Amount Card */}
+      <View className="bg-primary rounded-xl p-4 mb-4 shadow-lg flex-row justify-between items-end">
+        <Text className="text-white text-xl font-bold mb-1">
+          Total Amount
+        </Text>
+        <Text className="text-white text-3xl font-extrabold mt-1">
+          {totalAmount.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </Text>
       </View>
 
-      {/* Confirm Delivery Button */}
-      <Pressable
-        onPress={onConfirm}
-        className="bg-success active:bg-success/90 py-4 rounded-2xl shadow-md flex-row items-center justify-center gap-2 mb-8"
-      >
-        <MaterialIcons name="check-circle" size={24} color="white" />
-        <Text className="text-white font-semibold text-xl">
-          Confirm Delivery
-        </Text>
-      </Pressable>
+      {/* Payment Fields */}
+      <View className="bg-white rounded-xl border border-gray-200 mb-5 overflow-hidden shadow-sm">
+        {/* Discount Row */}
+        <View className="flex-row items-center px-4 py-3 border-b border-gray-100">
+          <View className="flex-1">
+            <Text className="text-sm font-semibold text-gray-500 mb-0.5">Discount (BDT)</Text>
+          </View>
+          <View className="h-10 w-36 flex-row items-center rounded-lg border border-gray-200 px-3 bg-gray-50">
+            <TextInput
+              value={discount}
+              onChangeText={setDiscount}
+              keyboardType="numeric"
+              placeholder="0.00"
+              placeholderTextColor="#9ca3af"
+              className="flex-1 text-base font-semibold text-foreground h-full py-0"
+              style={{ textAlign: 'right' }}
+            />
+          </View>
+        </View>
+
+        {/* Payable Row (computed) */}
+        <View className="flex-row items-center px-4 py-3 border-b border-gray-100 bg-gray-50">
+          <View className="flex-1">
+            <Text className="text-sm font-semibold text-gray-500 mb-0.5">Payable (BDT)</Text>
+          </View>
+          <Text className="text-base font-bold text-foreground">
+            {payable.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </Text>
+        </View>
+
+        {/* Received Amount Row */}
+        <View className="flex-row items-center px-4 py-3 border-b border-gray-100">
+          <View className="flex-1">
+            <Text className="text-sm font-semibold text-gray-500 mb-0.5">Received (BDT)</Text>
+          </View>
+          <View className="h-10 w-36 flex-row items-center rounded-lg border border-gray-200 px-3 bg-gray-50">
+            <TextInput
+              value={received}
+              onChangeText={setReceived}
+              keyboardType="numeric"
+              placeholder="0.00"
+              placeholderTextColor="#9ca3af"
+              className="flex-1 text-base font-semibold text-foreground h-full py-0"
+              style={{ textAlign: 'right' }}
+            />
+          </View>
+        </View>
+
+        {/* Due Amount Row */}
+        <View
+          className={`flex-row items-center px-4 py-3 ${due > 0 ? 'bg-destructive/10' : 'bg-success/10'}`}>
+          <View className="flex-1">
+            <Text
+              className={`text-sm font-semibold mb-0.5 ${due > 0 ? 'text-destructive' : 'text-success'}`}>
+              Due Amount (BDT)
+            </Text>
+          </View>
+          <Text
+            className={`text-xl font-extrabold ${due > 0 ? 'text-destructive' : 'text-success'}`}>
+            {due.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </Text>
+        </View>
+      </View>
     </View>
   )
 }
