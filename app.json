@@ -1,17 +1,18 @@
 {
   "expo": {
-    "name": "first-native-app",
-    "slug": "first-native-app",
-    "version": "1.0.0",
+    "name": "LDMS Preview",
+    "slug": "bhoumic-ldms",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "firstnativeapp",
+    "scheme": "bhoumic-ldms",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.bhoumic.ldms",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -43,6 +44,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "47ed358d-e04f-49ce-b0fd-12ab9505b8b4"
+      }
+    },
+    "owner": "rakibhassannayem"
   }
 }

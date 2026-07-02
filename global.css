@@ -10,12 +10,15 @@
     --color-card: #fff8e7;
     --color-muted: #f6eecf;
     --color-muted-foreground: rgba(0, 0, 0, 0.6);
-    --color-primary: #081126;
+    --color-primary: #1D4ED8;
     --color-accent: #ea7a53;
     --color-border: rgba(0, 0, 0, 0.1);
     --color-success: #16a34a;
     --color-destructive: #dc2626;
     --color-subscription: #8fd1bd;
+    --color-bashundhara: #dc2026;
+    --color-total: #f57f3e;
+    --color-fresh: #0080e0;
 
     --spacing-0: 0px;
     --spacing-1: 4px;
