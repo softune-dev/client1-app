@@ -1,4 +1,4 @@
-import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
@@ -76,15 +76,11 @@ const TabLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="more"
+          name="history"
           options={{
-            title: "More",
+            title: "History",
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name="more"
-                size={size}
-                color={color}
-              />
+              <MaterialIcons name="history-edu" size={size} color={color} />
             ),
           }}
         />
